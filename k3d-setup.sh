@@ -1,8 +1,10 @@
 #!/bin/bash
 # Bootstrap a K3d based Kubernetes setup with metrics, ingress, cert-manager and K8s dashboard
 
-## 0. Install latest k3d first
-curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+## 0. Install latest k3d first if not available
+if [ ! -x "$(command -v k3d)" ]; then
+    curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+fi
 
 ## 1. Bootstrap K3d
 clustername=${1:-cluster}
